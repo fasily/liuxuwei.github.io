@@ -1,0 +1,46 @@
+body{background:#202020;font:bold 12px Arial, Helvetica, sans-serif;margin:0;padding:0;color:#bbbbbb;}
+a{text-decoration:none;color:#00c6ff;}
+#right{
+width:400px;
+height:600px;
+float:right;
+}
+/* clock */
+.clock{width:400px;margin:0;padding:10px;border:1px solid #333;color:#fff;float:right;}
+.clock #Date{font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif;font-size:17px;text-align:left;text-shadow:0 0 5px #00c6ff;}
+.clock ul{width:400px;margin:0 auto;padding:0px;list-style:none;text-align:center;font-size:4px;}
+.clock ul li{display:inline;font-size:10em;text-align:center;font-family:'BebasNeueRegular', Arial, Helvetica, sans-serif;text-shadow:0 0 5px #00c6ff;}
+#point{position:relative;-moz-animation:mymove 1s ease infinite;-webkit-animation:mymove 1s ease infinite;padding-left:10px;padding-right:10px;}
+@-webkit-keyframes mymove{
+	0%{opacity:1.0;text-shadow:0 0 20px #00c6ff;}
+	50%{opacity:0;text-shadow:none;}
+	100%{opacity:1.0;text-shadow:0 0 20px #00c6ff;}
+}
+@-moz-keyframes mymove{
+	0%{opacity:1.0;text-shadow:0 0 20px #00c6ff;}
+	50%{opacity:0;text-shadow:none;}
+	100%{opacity:1.0;text-shadow:0 0 20px #00c6ff;}	
+}
+#myself{
+width:300px;
+height:600px;
+float:left;
+}
+#describe{
+width:300px;
+font-size:12px;
+}
+#photo{
+width:300px;
+}
+#myblogtext{
+width:400px;
+float:right;
+text-align:left;
+font-size: 16px;
+color: #FFF8DC;
+}
+h2{
+font-size: 20px;color: #FFD700; display : inline;
+}
+#myblogtext ul li{font-family:'BebasNeueRegular', Arial, Helvetica; color: #FFF8DC;}

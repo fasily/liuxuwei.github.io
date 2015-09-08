@@ -1,0 +1,315 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>马尔科夫链</title>
+    <meta name="description" content="">
+    <meta name="author" content="Name Lastname">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+    
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images
+      <link rel="shortcut icon" href="images/favicon.ico">
+      <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+    -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">刘旭伟's blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div class="container">
+        
+<div class="page-header">
+  <h1>马尔科夫链 </h1>
+</div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>28 December 2014</span>
+    </div>
+    <div class="content">
+      <h3 id="markov-chain">马尔科夫链（Markov chain）的应用</h3>
+<ul>
+  <li>
+    <p>统计学：排队理论，统计学中的建模等；</p>
+  </li>
+  <li>
+    <p>生物学：帮助模拟生物增殖过程的建模；</p>
+  </li>
+  <li>
+    <p>地理学：地理统计学；</p>
+  </li>
+  <li>
+    <p>因特网：谷歌使用的网页排序算法PageRank就是由马尔科夫链定义的，也可以应用与分析用户浏览网页的行为。</p>
+  </li>
+</ul>
+
+<h3 id="section">马尔科夫链的定义</h3>
+
+<ul>
+  <li>
+    <p><strong>随机过程</strong>：是一连串随机事件动态关系的定量描述。如股票和汇率的波动，体温变化，布朗运动等。</p>
+  </li>
+  <li>
+    <p><strong>马尔科夫过程</strong>：是一个具备了马尔科夫性质的随机过程。</p>
+  </li>
+  <li>
+    <p><strong>马尔科夫链</strong>：又称离散时间马尔科夫链（DTMC），是马尔科夫过程中的一个特例，为具备马尔科夫性质和离散时间状态的随机过程。</p>
+  </li>
+  <li>
+    <p><strong>马尔科夫性质</strong>：是概率论中的一个概念。当一个随机过程在给定现在状态及所有过去状态的情况下，其未来状态的条件概率分布仅依赖于当前状态；换句话说，在给定现在状态时，将来与过去是独立的。</p>
+  </li>
+</ul>
+
+<p>记马尔可夫链是随机变量X1, X2, X3…的一个数列。这些变量的范围，即他们所有可能取值的集合，被称为“状态空间”，而Xn的值则是在时间n的状态。如果Xn+1对于过去状态的条件概率分布仅是Xn的一个函数，即</p>
+
+<script type="math/tex; mode=display">P(Xn+1=x/X0,X1,...,Xn)=P(Xn+1=x/Xn)</script>
+
+<p>这里x是过程中的某个状态。</p>
+
+<p>So，马氏链模型满足如下条件：
+&gt; 1. 系统在每个时期所处的状态是随机的；
+&gt; 2. 从一时期到另一时期状态的转移是按一定的概率；
+&gt; 3. 下时期状态只取决于本时期状态和转移概率。</p>
+
+<h3 id="section-1">马尔科夫链的基本方程</h3>
+
+<script type="math/tex; mode=display">状态:Xn=1,2,…,k（n=0,1…）;</script>
+
+<script type="math/tex; mode=display">状态概率:ai(n)=P(xn=i), i=1,2,...,k; n=0,1,...;</script>
+
+<script type="math/tex; mode=display">转移概率:pij = P(Xn+1=j/Xn=i),pij >= 0;</script>
+
+<script type="math/tex; mode=display">基本方程:Xn+1=Xn*P,其中P为状态转移矩阵;</script>
+
+<h3 id="section-2">马尔科夫链的平稳性</h3>
+
+<p>平稳分布是一个满足以下方程的向量:
+<script type="math/tex">π^* P=π^*</script></p>
+
+<p>在此情况下，稳态分布π^*是一个对应于特征根为1的，该转移矩阵的特征向量。</p>
+
+<p>如果转移矩阵不可约，并且是非周期的，则P^k收敛到一个每一列都不同的平稳分布π^<em>，并且，lim┬(k→∞)⁡〖P^k 〗=π^</em>，独立于初始分布π，这是由Perron-Frobenius theorem所指出的。
+正的转移矩阵（即矩阵的每一个元素都是正的）是不可约和非周期的。</p>
+
+<p>稳态分布的一个充分而非必要条件是转移矩阵满足细致平衡条件。一个马氏链的转移矩阵满足细致平衡条件也可以说该马氏链是可逆的。</p>
+
+<h3 id="section-3">致歉</h3>
+<p>由于本人是初学者，技术还不够熟练，关于本博客，后续会继续完善，望谅解！</p>
+
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#statistic-ref">
+    		statistic <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#Jekyll-ref">Jekyll <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/2014/12/24/merry" title="Merry">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/sb/2015/08/01/hw" title="用心等待">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'jekyllbootstrap'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2015 Name Lastname
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </div>
+    </div>
+
+    
+
+
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
